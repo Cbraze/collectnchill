@@ -13,23 +13,39 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 public class Comment {
 	
+	
 		
 	@Id
 	@GeneratedValue
 	private long commentId;
 	@NotNull
-	private String comment;
-	
+	private Comment comment;
+	private User user;
 	
 	@ManyToOne
 	@JoinColumn(name = "post_id", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Post post;
 	
-	public String getComment() {
+	public Post getPost() {
+		return post;
+	}
+	public void setPost(Post post) {
+		this.post = post;
+	}
+	
+	public Comment getComment() {
 		return comment;
 	}
-	public void setComment(String comment) {
+	public void setComment(Comment comment) {
 		this.comment = comment;
+	}
+	@ManyToOne
+	@JoinColumn(name="userId")
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

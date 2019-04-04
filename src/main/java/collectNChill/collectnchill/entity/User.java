@@ -1,10 +1,15 @@
 package collectNChill.collectnchill.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User {
@@ -13,6 +18,12 @@ public class User {
 	private String hash;
 	private String username;
 	private String email;
+	
+	@JsonIgnore
+	private List<Post> posts;
+	@JsonIgnore
+	private List<Comment> comments;
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,5 +52,21 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	@OneToMany (mappedBy = "user")
+	public List<Post> getPosts() {
+		return posts;
+	}
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+	@OneToMany (mappedBy = "user")
+	public List<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+	
+	
 	
 }

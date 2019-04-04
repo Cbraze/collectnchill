@@ -11,28 +11,28 @@ import collectNChill.collectnchill.entity.Comment;
 import collectNChill.collectnchill.service.CommentService;
 
 @RestController
-@RequestMapping("/main/post")
+@RequestMapping("/users/{userId}/posts/{postId}")
 public class CommentController {
 
 	@Autowired
 	CommentService commentService;
 
-	@RequestMapping("/{id}/comments")
+	@RequestMapping("/comments")
 	public Iterable<Comment> getComments() {
 		return commentService.getComments();
 	}
 
-	@RequestMapping(value = "/{id}/comment", method = RequestMethod.POST)
+	@RequestMapping(value = "/comments", method = RequestMethod.POST)
 	public Comment createComment(@RequestBody Comment comment) {
 		return commentService.createComment(comment);
 	}
 
-	@RequestMapping(value = "/{id}/comment/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/comments/{commentId}", method = RequestMethod.PUT)
 	public Comment updateComment(@PathVariable Long commentId, @RequestBody Comment comment) {
 		return commentService.updateComment(commentId, comment);
 	}
 
-	@RequestMapping(value = "/{id}/comment/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/comments/{commentId}", method = RequestMethod.DELETE)
 	public void deleteComment(@PathVariable Long commentId) {
 		commentService.deleteComment(commentId);
 	}

@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import collectNChill.collectnchill.entity.Post;
-
-
+import collectNChill.collectnchill.entity.User;
 import collectNChill.collectnchill.repository.PostRepository;
+import collectNChill.collectnchill.repository.UserRepository;
 
 
 @Service
@@ -15,7 +15,12 @@ public class PostService {
 	@Autowired
 	PostRepository repo;
 	
-	public Post createPost(Post post) {
+	@Autowired
+	UserRepository userRepo;
+	
+	public Post createPost(Post post, Long userId) {
+		User user = userRepo.findOne(userId);
+		post.setUser(user);
 		return repo.save(post);
 	}
 

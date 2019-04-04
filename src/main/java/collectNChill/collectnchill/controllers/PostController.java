@@ -13,7 +13,7 @@ import collectNChill.collectnchill.service.PostService;
 
 
 @RestController
-@RequestMapping("/main")
+@RequestMapping("/users/{userId}")
 public class PostController {
 
 	@Autowired
@@ -24,17 +24,17 @@ public class PostController {
 		return postService.getPosts();
 	}
 
-	@RequestMapping(value ="/post", method=RequestMethod.POST) 
-	public Post createPost(@RequestBody Post post) {
-		return postService.createPost(post);
+	@RequestMapping(value ="/posts", method=RequestMethod.POST) 
+	public Post createPost(@RequestBody Post post, @PathVariable Long userId) {
+		return postService.createPost(post, userId);
 	}
 
-	@RequestMapping(value = "/post/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/posts/{id}", method = RequestMethod.PUT)
 	public Post updatePost(@PathVariable Long postId, @RequestBody Post post) {
 		return postService.updatePost(postId, post);
 	}
 
-	@RequestMapping(value = "/post/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/posts/{id}", method = RequestMethod.DELETE)
 	public void deletePost(@PathVariable Long postId) {
 		postService.deletePost(postId);
 	}
