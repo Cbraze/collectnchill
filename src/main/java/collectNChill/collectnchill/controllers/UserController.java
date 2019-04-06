@@ -18,7 +18,7 @@ import collectNChill.collectnchill.service.UserService;
 
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 	@Autowired
 	private UserService userService;

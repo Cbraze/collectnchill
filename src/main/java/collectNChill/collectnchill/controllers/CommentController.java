@@ -23,8 +23,8 @@ public class CommentController {
 	}
 
 	@RequestMapping(value = "/comments", method = RequestMethod.POST)
-	public Comment createComment(@RequestBody Comment comment) {
-		return commentService.createComment(comment);
+	public Comment createComment(@RequestBody Comment comment, @PathVariable Long userId) {
+		return commentService.createComment(comment, userId);
 	}
 
 	@RequestMapping(value = "/comments/{commentId}", method = RequestMethod.PUT)

@@ -2,44 +2,48 @@ package collectNChill.collectnchill.entity;
 
 import java.util.List;
 
+
+
+//import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
+
 
 @Entity
-public class Post {
+public class Friends {
 
-	private Long id;
-	@NotNull
-	private String post;
+	@Id
+	@GeneratedValue
+	private long friendId;
+
+	private List<Friends> friends;
+
 	private User user;
-
-	@OneToMany
-	private List<Comment> comments;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public Long getId() {
-		return id;
+	public Long getFriendId() {
+		return friendId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setFriendId(Long friendId) {
+		this.friendId = friendId;
 	}
 
-	public String getPost() {
-		return post;
+	@ManyToMany(mappedBy="user")
+	public List<Friends> getFriends() {
+		return friends;
 	}
 
-	public void setPost(String post) {
-		this.post = post;
+	public void setFriends(List<Friends> friends) {
+		this.friends = friends;
 	}
-
 	@ManyToOne
 	@JoinColumn(name = "userId")
 	public User getUser() {
@@ -49,4 +53,5 @@ public class Post {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 }
