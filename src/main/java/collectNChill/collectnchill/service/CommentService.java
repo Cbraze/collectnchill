@@ -1,9 +1,12 @@
 package collectNChill.collectnchill.service;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import collectNChill.collectnchill.entity.Comment;
+import collectNChill.collectnchill.entity.Post;
 import collectNChill.collectnchill.entity.User;
 import collectNChill.collectnchill.repository.CommentRepository;
 import collectNChill.collectnchill.repository.PostRepository;
@@ -14,15 +17,23 @@ import collectNChill.collectnchill.repository.UserRepository;
 public class CommentService {
 	
 	@Autowired
-	CommentRepository repo;
+	private CommentRepository repo;
 	@Autowired
-	UserRepository userRepo;
+	private UserRepository userRepo;
 	@Autowired
-	PostRepository postRepo;
+	private PostRepository postRepo;
 	
-	public Comment createComment(Comment comment, Long userId) {
+	
+	
+	public Comment createComment(Comment comment, Long postId, Long userId) throws Exception {
 		User user = userRepo.findOne(userId);
+		Post post = postRepo.findOne(postId);
+		if (user == null || post == null) {
+			throw new Exception("user or post does not exsist.");
+		}
+		comment.setDate(new Date());
 		comment.setUser(user);
+		comment.setPost(post);
 		return repo.save(comment);
 	}
 
@@ -46,6 +57,14 @@ public class CommentService {
 				repo.save(foundComment);
 			}
 			return foundComment;
+		}
+
+		public PostRepository getPostRepo() {
+			return postRepo;
+		}
+
+		public void setPostRepo(PostRepository postRepo) {
+			this.postRepo = postRepo;
 		}
 
 

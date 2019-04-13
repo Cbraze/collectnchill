@@ -1,57 +1,25 @@
 package collectNChill.collectnchill.entity;
 
-import java.util.List;
 
+import java.util.Set;
 
+//import javax.persistence.Entity;
 
-//import javax.persistence.CascadeType;
+public class Following {
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-
-
-@Entity
-public class Friends {
-
-	@Id
-	@GeneratedValue
-	private long friendId;
-
-	private List<Friends> friends;
-
-	private User user;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	public Long getFriendId() {
-		return friendId;
+	private Set<User> following;
+	
+	public Following(User user) {
+		setFollowing(user.getFollowing());
 	}
 
-	public void setFriendId(Long friendId) {
-		this.friendId = friendId;
+	public Set<User> getFollowing() {
+		return following;
 	}
 
-	@ManyToMany(mappedBy="user")
-	public List<Friends> getFriends() {
-		return friends;
+	public void setFollowing(Set<User> following) {
+		this.following = following;
 	}
-
-	public void setFriends(List<Friends> friends) {
-		this.friends = friends;
-	}
-	@ManyToOne
-	@JoinColumn(name = "userId")
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 }
+
+

@@ -4,13 +4,12 @@ collectNChill\collectnchill\entity\Post.class
 collectNChill\collectnchill\entity\Credentials.class
 collectNChill\collectnchill\repository\AdminRepository.class
 collectNChill\collectnchill\repository\PostRepository.class
-collectNChill\collectnchill\repository\FriendRepository.class
 collectNChill\collectnchill\entity\Admin.class
 collectNChill\collectnchill\service\AuthServiceAdmin.class
 collectNChill\collectnchill\controllers\AdminController.class
 collectNChill\collectnchill\entity\User.class
 collectNChill\collectnchill\controllers\CommentController.class
-collectNChill\collectnchill\entity\Friends.class
+collectNChill\collectnchill\entity\Following.class
 collectNChill\collectnchill\service\AuthService.class
 collectNChill\collectnchill\controllers\PostController.class
 collectNChill\collectnchill\App.class
@@ -18,7 +17,5 @@ collectNChill\collectnchill\entity\Comment.class
 collectNChill\collectnchill\service\PostService.class
 collectNChill\collectnchill\repository\CommentRepository.class
 collectNChill\collectnchill\repository\UserRepository.class
-collectNChill\collectnchill\service\FriendsService.class
 collectNChill\collectnchill\entity\AdminCredentials.class
-collectNChill\collectnchill\controllers\FriendController.class
 collectNChill\collectnchill\service\UserService.class

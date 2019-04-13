@@ -1,5 +1,7 @@
 package collectNChill.collectnchill.entity;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +13,8 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Comment {
 
@@ -20,10 +24,13 @@ public class Comment {
 	@NotNull
 	private String comment;
 	private User user;
+	@JsonIgnore
 	private Post post;
+	private Date date;
+
 	
 	@ManyToOne
-	@JoinColumn(name = "post_id")
+	@JoinColumn(name = "postId")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	public Post getPost() {
 		return post;
@@ -58,5 +65,13 @@ public class Comment {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 }

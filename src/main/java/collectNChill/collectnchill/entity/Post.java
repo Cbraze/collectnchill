@@ -1,6 +1,7 @@
 package collectNChill.collectnchill.entity;
 
-import java.util.List;
+import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,18 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
+
 
 @Entity
 public class Post {
 
 	private Long id;
-	@NotNull
 	private String post;
 	private User user;
-
-	@OneToMany
-	private List<Comment> comments;
+	private Date date;
+	private Set<Comment> comments;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -49,4 +48,20 @@ public class Post {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	@OneToMany(mappedBy = "post")
+	public Set<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
+	}
+	
 }
